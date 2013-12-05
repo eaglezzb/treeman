@@ -7,9 +7,10 @@ chat_server::~chat_server(void)
 
   void chat_server::start_accept()
   {
+	  //创建一个新的session，让它接受新的连接
     chat_session_ptr new_session(new chat_session(io_service_, room_));
-    acceptor_.async_accept(new_session->socket(),
-        boost::bind(&chat_server::handle_accept, this, new_session,
+	 //接受新的连接，在socket上
+    acceptor_.async_accept(new_session->socket(), boost::bind(&chat_server::handle_accept, this, new_session,
           boost::asio::placeholders::error));
   }
 

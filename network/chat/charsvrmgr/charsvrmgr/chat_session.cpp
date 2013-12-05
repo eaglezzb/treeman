@@ -12,6 +12,9 @@ chat_session::~chat_session(void)
     void chat_session::start()
   {
     room_.join(shared_from_this());
+	//async_read是事件处理一个机制，使用回调函数从而实现事件处理器方法
+	//本示例大量采用这个机制，也就是异步机制
+	//通过回调函数可以形成一个事件链，即在回调函数中设置一个新的事件与新回调函数
     boost::asio::async_read(socket_,
         boost::asio::buffer(read_msg_.data(), chat_message::header_length),
         boost::bind(
@@ -22,6 +25,7 @@ void chat_session::deliver(const chat_message& msg)
   {
     bool write_in_progress = !write_msgs_.empty();
     write_msgs_.push_back(msg);
+	//OutputDebugStringA(write_msgs_.front().data());
     if (!write_in_progress)
     {
       boost::asio::async_write(socket_,

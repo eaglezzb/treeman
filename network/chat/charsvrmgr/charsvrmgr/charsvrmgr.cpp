@@ -12,10 +12,6 @@
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
 #include <iostream>
-#include "chat_message.hpp"
-#include "chat_participant.h"
-#include "chat_room.h"
-#include "chat_session.h"
 #include "chat_server.h"
 
 int main(int argc, char* argv[])
@@ -31,6 +27,9 @@ int main(int argc, char* argv[])
     boost::asio::io_service io_service;
 
     chat_server_list servers;
+
+	//为每一个端口开启一个服务器对象
+	//让这个对象与这个端口对应
     for (int i = 1; i < argc; ++i)
     {
       using namespace std; // For atoi.

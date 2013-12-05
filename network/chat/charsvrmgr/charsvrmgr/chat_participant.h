@@ -1,5 +1,8 @@
 #pragma once
 #include "chat_message.hpp"
+
+//抽象基类
+//用于提供聊天室成员的接口
 class chat_participant
 {
 public:

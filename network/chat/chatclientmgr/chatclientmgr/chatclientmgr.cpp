@@ -32,6 +32,9 @@ public:
     : io_service_(io_service),
       socket_(io_service)
   {
+	  // Read the fixed-length header of the next message from the server.
+      //async_xxx一族函数实际上都上范型的，它们会从各种设计好的可读或可写对象中
+      //执行相应的操作，而不管这些操作实际上是什么
     boost::asio::async_connect(socket_, endpoint_iterator,
         boost::bind(&chat_client::handle_connect, this,
           boost::asio::placeholders::error));
