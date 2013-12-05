@@ -31,3 +31,7 @@ void chat_room::deliver(const chat_message& msg)
     std::for_each(participants_.begin(), participants_.end(),
         boost::bind(&chat_participant::deliver, _1, boost::ref(msg)));
 }
+void chat_room::deliver_group(const chat_message& msg)
+{
+
+}

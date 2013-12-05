@@ -10,6 +10,7 @@ public:
 	chat_room(void);
 	virtual ~chat_room(void);
 	 void deliver(const chat_message& msg);  //聊天室广播消息
+	 void deliver_group(const chat_message& msg); //分组发送消息
 	 void leave(chat_participant_ptr participant);  //有参与者离开
 	 void join(chat_participant_ptr participant);  //有参与者加入
 private:
