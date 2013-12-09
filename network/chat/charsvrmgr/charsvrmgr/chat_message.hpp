@@ -14,7 +14,26 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <string>
+using namespace std;
+inline static std::string& left(std::string& str)   
+{   
+	std::string::size_type index = str.find_first_not_of(" \n\r\t");  
+	if (index != std::string::npos){str = str.substr(index);}  
+	return  str;  
+}  
 
+inline static std::string& right(std::string& str)   
+{   
+	std::string::size_type index = str.find_last_not_of(" \n\r\t");  
+	if (index != std::string::npos){str = str.substr(0, index + 1);}  
+	return str;  
+}  
+
+inline static std::string& trim(std::string& str)   
+{   
+	return left(right(str));   
+}  
 class chat_message
 {
 public:
@@ -23,7 +42,8 @@ public:
 
   chat_message()
     : body_length_(0)
-  {
+  {	  
+	 memset(data_,'\0', header_length + max_body_length);
   }
 
   const char* data() const

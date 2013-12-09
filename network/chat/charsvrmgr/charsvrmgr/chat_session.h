@@ -18,8 +18,9 @@ public:
   }
 	virtual ~chat_session(void);
 	tcp::socket& socket();
-	void start(); // 会话开始，准备从客户那读取消息
+	void start(); //会话开始，准备从客户那读取消息
 	void deliver(const chat_message& msg);  //向服务的客户发送消息
+	void deliver_group(const chat_message& msg); //去掉不能实例化抽象类，做什么用保留
 	void handle_read_header(const boost::system::error_code& error);
 	void handle_read_body(const boost::system::error_code& error);
 	void handle_write(const boost::system::error_code& error);
